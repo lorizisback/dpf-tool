@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dpf Tool</string>
+    <string name="error_retrieving_dpf">Error retrieving dpf regeneration infos</string>
 </resources>
