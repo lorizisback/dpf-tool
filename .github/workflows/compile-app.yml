@@ -36,4 +36,6 @@ jobs:
           cache-read-only: false
 
       - name: Build
-        run: ./gradlew assembleDebug
+        run: |
+         chmod +x gradlew
+         ./gradlew assembleDebug
