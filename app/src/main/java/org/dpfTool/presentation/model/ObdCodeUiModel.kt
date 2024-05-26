@@ -1,6 +1,6 @@
 package org.dpfTool.presentation.model
 
-data class ObdCodeUiState(
+data class ObdCodeUiModel(
     val codeName: String = "",
     val codeValue: String = ""
 )

@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import org.dpfTool.presentation.ObdCodeViewModel
+import org.dpfTool.presentation.MainActivityViewModel
 import org.dpfTool.ui.theme.DpfToolTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,12 +41,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ObdCodeInfos(obdCodeViewModel: ObdCodeViewModel) {
+fun ObdCodeInfos(mainActivityViewModel: MainActivityViewModel) {
     Text(
-        text = obdCodeViewModel.uiState.codeName
+        text = mainActivityViewModel.uiState.codeName
     )
     Text(
-        text = obdCodeViewModel.uiState.codeValue
+        text = mainActivityViewModel.uiState.codeValue
     )
 }
 
@@ -54,5 +55,12 @@ fun ObdCodeInfos(obdCodeViewModel: ObdCodeViewModel) {
 fun GreetingPreview() {
     DpfToolTheme {
         Greeting("Android")
+    }
+}
+
+@Composable
+fun PairedBluetoothDevices(viewModel: MainActivityViewModel) {
+    LazyColumn {
+
     }
 }
