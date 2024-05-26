@@ -1,4 +1,4 @@
-package org.dpfTool.data.model
+package org.dpfTool.data.repository.model
 
 import com.github.eltonvs.obd.command.ObdCommand
 import com.github.eltonvs.obd.command.ObdRawResponse

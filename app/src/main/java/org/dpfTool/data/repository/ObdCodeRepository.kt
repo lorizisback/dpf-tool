@@ -1,8 +1,8 @@
-package org.dpfTool.data
+package org.dpfTool.data.repository
 
 import com.github.eltonvs.obd.command.ObdResponse
 import com.github.eltonvs.obd.connection.ObdDeviceConnection
-import org.dpfTool.data.model.DpfRegenerationCommand
+import org.dpfTool.data.repository.model.DpfRegenerationCommand
 import java.io.InputStream
 import java.io.OutputStream
 
