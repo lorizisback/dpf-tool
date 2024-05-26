@@ -36,9 +36,7 @@ sealed interface ObdCodeRetrievalUiState {
 }
 
 sealed interface BluetoothConnectionUiState {
-    data class Success(val bluetoothDeviceUiModel: BluetoothDeviceUiModel) :
-        BluetoothConnectionUiState
-
+    data class Success(val bluetoothDeviceUiModel: BluetoothDeviceUiModel) : BluetoothConnectionUiState
     data object InProgress : BluetoothConnectionUiState
     data object Failure : BluetoothConnectionUiState
 }
