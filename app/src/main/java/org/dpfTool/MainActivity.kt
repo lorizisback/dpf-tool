@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import org.dpfTool.presentation.ObdCodeViewModel
 import org.dpfTool.ui.theme.DpfToolTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,6 +24,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Android")
+                    // how to use obdCodeInfos composable? where to instance the viewmodel?
                 }
             }
         }
@@ -34,6 +36,16 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
         modifier = modifier
+    )
+}
+
+@Composable
+fun ObdCodeInfos(obdCodeViewModel: ObdCodeViewModel) {
+    Text(
+        text = obdCodeViewModel.uiState.codeName
+    )
+    Text(
+        text = obdCodeViewModel.uiState.codeValue
     )
 }
 
