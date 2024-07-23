@@ -1,0 +1,16 @@
+package org.dpfTool.data.model
+
+import com.github.eltonvs.obd.command.ObdCommand
+import com.github.eltonvs.obd.command.ObdRawResponse
+
+class DpfTemperatureAfterRegenerationCommand : ObdCommand() {
+    // Required
+    override val tag = "DPF_TEMPERATURE_AFTER_REGENERATION"
+    override val name = "Dpf temperature after regeneration"
+    override val mode = "01"
+    override val pid = "0x22A0D7"
+
+    // Optional
+    override val defaultUnit = ""
+    override val handler = { it: ObdRawResponse -> "Calculations to parse value from ${it.processedValue}" }
+}
