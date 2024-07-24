@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.dpfTool.domain.GetObdCodeUseCase
+import org.dpfTool.domain.GetLastRegenerationDistanceUseCase
 import org.dpfTool.presentation.model.ObdCodeUiState
 
-class ObdCodeViewModel(private val getObdCodeUseCase: GetObdCodeUseCase) : ViewModel() {
+class ObdCodeViewModel(private val getLastRegenerationDistanceUseCase: GetLastRegenerationDistanceUseCase) : ViewModel() {
     var uiState by mutableStateOf(ObdCodeUiState())
         private set
 
@@ -19,7 +19,7 @@ class ObdCodeViewModel(private val getObdCodeUseCase: GetObdCodeUseCase) : ViewM
     fun fetchObdCodes() {
         fetchObdCodesJob?.cancel()
         fetchObdCodesJob = viewModelScope.launch {
-            val obdResponse = getObdCodeUseCase.invoke()
+            val obdResponse = getLastRegenerationDistanceUseCase.invoke()
             uiState = uiState.copy(
                 codeName = obdResponse.command.name,
                 codeValue = obdResponse.formattedValue
