@@ -5,13 +5,17 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.dpfTool.data.repository.ObdCodeRepository
+import org.dpfTool.di.CoroutineDispatcherProvider
+import javax.inject.Inject
 
-class GetObdCodeUseCase (private val obdCodeRepository: ObdCodeRepository,
-                         private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default) {
+class GetObdCodeUseCase @Inject constructor(
+    private val obdCodeRepository: ObdCodeRepository,
+    private val dispatcherProvider: CoroutineDispatcherProvider
+) {
 
-    suspend operator fun invoke(): ObdResponse{
+    suspend operator fun invoke(): ObdResponse {
         val result: ObdResponse
-        withContext(defaultDispatcher){
+        withContext(dispatcherProvider.provideMainDispatcher()) {
             result = obdCodeRepository.getObdCodeValues()
         }
         return result

@@ -5,20 +5,31 @@ import android.bluetooth.BluetoothAdapter
 import org.dpfTool.data.datasource.model.BluetoothConnection
 import org.dpfTool.data.datasource.model.BluetoothConnectionResult
 import java.util.UUID
+import javax.inject.Inject
 
-class BluetoothDatasource(private val bluetoothAdapter: BluetoothAdapter, private val isBluetoothPermissionGranted: Boolean) {
+class BluetoothDatasource @Inject constructor(
+    private val bluetoothAdapter: BluetoothAdapter,
+    //private val isBluetoothPermissionGranted: Boolean
+) {
 
     @SuppressLint("MissingPermission")
-    suspend fun getBluetoothConnection(macAddress: String) : BluetoothConnectionResult {
-        if (!isBluetoothPermissionGranted) return BluetoothConnectionResult.MissingPermission
+    suspend fun getBluetoothConnection(macAddress: String): BluetoothConnectionResult {
+        //if (!isBluetoothPermissionGranted) return BluetoothConnectionResult.MissingPermission
 
-        val device = bluetoothAdapter.getRemoteDevice(macAddress)
-        val socket = device.createRfcommSocketToServiceRecord(SPP_UUID);
-        val connection = BluetoothConnection(inputStream = socket.inputStream, outputStream = socket.outputStream)
-        return BluetoothConnectionResult.Success(connection)
+        try {
+            val device = bluetoothAdapter.getRemoteDevice(macAddress)
+            val socket = device.createRfcommSocketToServiceRecord(SPP_UUID);
+            val connection = BluetoothConnection(
+                inputStream = socket.inputStream,
+                outputStream = socket.outputStream
+            )
+            return BluetoothConnectionResult.Success(connection)
+        } catch (e: Exception) {
+            return BluetoothConnectionResult.ConnectionFailed(e.message ?: e.stackTraceToString())
+        }
     }
 
     private companion object {
-        val SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
+        private val SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
     }
 }
